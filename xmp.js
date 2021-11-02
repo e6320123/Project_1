@@ -1,24 +1,4 @@
  
-
-var list, obj;
-// Create an XMLHttpRequest object
-var ajax = new XMLHttpRequest();
-// Define a callback function
-ajax.onload = function() {
-
-    // document.getElementById("ajax").innerHTML = ajax.responseText;
-    list = ajax.responseText;
-    obj = JSON.parse(list);
-
-    //調整id值
-    for (let i = 0; i < obj.length; i++) {
-        obj[i].id = i+"";
-    }
-}
-// Send a request
-ajax.open("GET", "http://localhost/data.php",false);
-ajax.send();
-
  
 function shuffle(arr) {
     var i, j, temp;

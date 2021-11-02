@@ -17,7 +17,8 @@
 .mynav {
     position: absolute;
     bottom: 0;
-    left: 350px;
+    /* left: 350px; */
+    /* left: 350px; */
 }
 
 .mynav>ul {
@@ -34,8 +35,38 @@
     cursor: pointer;
     margin: 10px;
     color: aliceblue;
+} 
+
+#search {
+    position: absolute;
+    bottom: 10px;
+    left: 770px;
+    cursor: pointer;
+    padding: 3px 40px 3px 0px;
 }
 
+#search>img {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 1px;
+    border-radius: 10px;
+    right: 3px;
+}
+.reg{
+    left: 300px;
+    position: absolute;
+    bottom: 3px;
+    color: aliceblue;
+
+}
+.login{
+    left: 400px;
+    position: absolute;
+    bottom: 3px;
+    color: aliceblue;
+
+}
 
 /* ------------- 導覽列 -------------- */
 /*--------------------tuku----------------------*/
@@ -206,22 +237,6 @@
 }
 
 
-#search {
-    position: absolute;
-    bottom: 10px;
-    left: 770px;
-    cursor: pointer;
-    padding: 3px 40px 3px 0px;
-}
-
-#search>img {
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    bottom: 1px;
-    border-radius: 10px;
-    right: 3px;
-}
 .cntbgcolor {/*包含body content  L_content  R_content*/
     
     background-color: rgb(254, 255, 246);

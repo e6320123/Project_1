@@ -26,10 +26,13 @@ INSERT INTO games (platform, name, imgsrc, imgsize) VALUES("NS", "哆啦 A 夢 �
 
 
 
+CREATE TABLE members(
+    id int primary key auto_increment,
+    user varchar(20), 
+    pwd varchar(20)
+) ;
+
+INSERT INTO members (user, pwd) VALUES("ben", "123");
 
 
-
--- drop table games;
-
--- select * from games;
-
+-- select * from members;

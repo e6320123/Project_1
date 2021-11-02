@@ -1,3 +1,48 @@
+<?php
+
+session_start();
+
+$login = "Login";
+$reg = "Register";
+$login_url = "login.html";
+$reg_url = "reg.html";
+$json;
+
+if(isset($_SESSION['login']))
+{
+    if($_SESSION['login'] == 'yes')
+    {
+        $login = "";
+        $reg = "";
+        $login_url = "";
+        $reg_url ="";
+    }
+}
+
+if(isset($_SESSION['user']))
+{
+    $reg = $_SESSION['user'];
+    $login = "Logout";
+    $login_url = "logout.php";
+}
+
+
+#撈出遊戲資料
+try {
+	$db = new PDO('mysql:host=localhost;dbname=test','root','');
+	$sql = "select * from games;";
+	$statement = $db->query($sql); 
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $json = json_encode($results, JSON_UNESCAPED_UNICODE);
+}
+catch (PDOException $e) {
+  echo "<br>";
+  echo $e->getMessage();
+  die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +58,18 @@
 
     <link rel="stylesheet" href="c.css">
 
+    <script>
+        var obj = <?php echo $json;?>;
 
+        //調整id值
+        for (let i = 0; i < obj.length; i++) {
+            obj[i].id = i+"";
+        }
+    </script>
 
 </head>
 
 <body id="body_bg" class="cntbgcolor">
-<div id="ajax">
-    
-</div>
     <div id="toTop">
         <img id="toTopimg" src="img/up.png" alt="">
     </div>
@@ -28,9 +77,7 @@
 
         <div class="mynav">
             <ul class="ul">
-                    <li>
-                        首頁   
-                          </li>
+                <li>首頁</li>
                 <li>線上遊戲</li>
                 <li>PC GAME</li>
                 <li>PS4</li>
@@ -40,13 +87,18 @@
         <div id="search">
             <input type="text" placeholder="請輸入搜尋" name="" id="">
             <img src="img/sear.jpg" alt="">
-        </div>
+            <a href="<?php echo $login_url;?>" id="login" class="login">
+                <?php echo $login;?>
+            </a>
+            <a href="<?php echo $reg_url;?>" id="reg" class="reg">
+                <?php echo $reg;?>
+            </a>
+        </div>  
     </div>
     <div id="content" class="cntbgcolor">
         
+        <!--L content --><!--L content --><!--L content --><!--L content -->
         <div id="L_content" class="cntbgcolor">
-                
-            <!--L content --><!--L content --><!--L content --><!--L content -->
             <p style="border-bottom:2px solid gray;">遊戲搜索欄</p>
             
             <div id="xmp_frame" style="display: none;">
@@ -61,10 +113,9 @@
                     </tbody>
                 </table>
             </div>
- 
-            <!--L content --><!--L content --><!--L content --><!--L content -->
-         
         </div>
+        <!--L content --><!--L content --><!--L content --><!--L content -->
+         
 
 
         <div id="R_content" class="cntbgcolor">
@@ -89,8 +140,6 @@
                     <td>
                         <a href="link/gta5.html"><img style="width: 100%;" src="img/gta5/gta5.jpg " alt=""></a>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td>
@@ -311,3 +360,5 @@
 </body>
 
 </html>
+
+
