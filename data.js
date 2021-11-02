@@ -1,67 +1,21 @@
-var list ='[' +
-    '{"inx":"0" ,"platform":"Online", "name":"魔獸世界：決戰艾澤拉斯" , "imgsrc":"wow.png", "imgsize":"120x120"},' +
-    '{"inx":"1" ,"platform":"PC",     "name":"帝國：全軍破敵" ,        "imgsrc":"etw.jpg", "imgsize":"100x130"},' +
-    '{"inx":"2" ,"platform":"PC",    "name":"刺客教條 2" ,             "imgsrc":"ac2.jpg", "imgsize":"100x130"},' +
-    '{"inx":"3" ,"platform":"PC",    "name":"全軍破敵：三國" ,         "imgsrc":"ttw.jpg", "imgsize":"100x130"},' +
-    '{"inx":"4" ,"platform":"PS4",    "name":"惡靈古堡 2 重製版" ,      "imgsrc":"bio2.png", "imgsize":"100x130"},' +
-    '{"inx":"5" ,"platform":"Online", "name":"暗黑破壞神 3：奪魂之鐮" , "imgsrc":"d3.png", "imgsize":"120x120"},' +
-    '{"inx":"6" ,"platform":"PS4",    "name":"惡魔獵人 5" ,            "imgsrc":"dmc5.jpg", "imgsize":"100x130"},' +
-    '{"inx":"7" ,"platform":"PS4",    "name":"漫威蜘蛛人" ,            "imgsrc":"spm.png",  "imgsize":"100x130"},' +
-    '{"inx":"8" ,"platform":"NS",    "name":"勇者鬥惡龍 XI S 尋覓逝去的時光 – Definitive Edition" ,"imgsrc":"dq.png", "imgsize":"100x130"},' +
-    '{"inx":"9","platform":"PS4",    "name":"魔物獵人 世界" ,         "imgsrc":"mons.png","imgsize":"100x130" },'+
-    '{"inx":"10","platform":"PC",    "name":"巫師 3：狂獵" ,          "imgsrc":"witch.jpg","imgsize":"100x130" },'+
-    '{"inx":"11","platform":"NS",    "name":"寶可夢 劍" ,             "imgsrc":"poke.png","imgsize":"100x130" },'+
-    '{"inx":"12","platform":"NS",    "name":"薩爾達傳說 曠野之息" ,    "imgsrc":"zelda.png","imgsize":"100x130" },'+
-    '{"inx":"13","platform":"Online", "name":"佩里亞編年史" ,          "imgsrc":"peria.jpg","imgsize":"120x120" },'+
-    
-
-    '{"inx":"14" ,"platform":"NS",     "name":"哆啦 A 夢 牧場物語" ,    "imgsrc":"dora.png", "imgsize":"100x130"}]';
-    function shuffle(arr) {
-        var i,
-            j,
-            temp;
-        for (i = arr.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-        return arr;
-    };
-
-
-var obj = JSON.parse(list);
-
+ 
+//搜索欄
 $("#search>img").click(function () {
     $("#L_content").empty();
-    var siArry =[];
-    // for (var i = 0; i < obj.length; i++) {
-    //     siArry.push(i);
-        
-    // }
-   
-    
-   
-   
+    var siArry =[]; 
     var result = "";
-    var result2 = "";
     var ch = $("#search>input").val();
     for (var i = 0; i < obj.length; i++) {
-        console.log(ch);
-        
-        var game = String(obj[i].name);
-        console.log(game.indexOf(ch));
-        if (game.indexOf(ch) > -1&&ch!="") { //&& ch!=""
-// result+=
-siArry.push(`<table class="smallFrame">
-<tr>
-    <td>
-        <img id="${obj[i].inx}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
-    </td>
-    <td><span>${obj[i].platform}</span>&ensp;${obj[i].name}</td>
-</tr>
-</table>`) ;
- 
+        var game = String(obj[i].name);         // console.log(game.indexOf(ch));
+        if (game.indexOf(ch) > -1&&ch!="") {  
+            siArry.push(`<table class="smallFrame">
+            <tr>
+                <td>
+                    <img id="${obj[i].id}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
+                </td>
+                <td><span>${obj[i].platform}</span>&ensp;${obj[i].name}</td>
+            </tr>
+            </table>`) ;
         }
     } 
     $("#L_content").append(`<p style="border-bottom:2px solid gray;" >遊戲搜索欄</p>`);   
@@ -70,69 +24,56 @@ siArry.push(`<table class="smallFrame">
     for (var i = 0; i < len; i++) {    
         result=siArry.pop();
        $("#L_content").append(result);  
-    }
-    // console.log($("#L_content").html());
+    }// console.log($("#L_content").html());
 })
+
 $("body").keydown(function () {
     if (window.event.keyCode ==13){
         $("#L_content").empty();
-    
         var result = "";
-        var result2 = "";
         var ch = $("#search>input").val();
         for (var i = 0; i < obj.length; i++) {
-            var c = 0;
             var game = String(obj[i].name);
             if (game.indexOf(ch) > -1&& ch!="") { //&& ch!=""
              result += `<table class="smallFrame">
-             <tr>
-                 <td>
-                     <img id="${obj[i].inx}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
-                 </td>
-                 <td><span>${obj[i].platform}</span>&ensp;${obj[i].name}</td>
-             </tr>
-         </table>`
+                    <tr>
+                        <td>
+                            <img id="${obj[i].id}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
+                        </td>
+                        <td>
+                            <span>${obj[i].platform}</span>&ensp;${obj[i].name}
+                        </td>
+                    </tr>
+                </table>`
             }
         }
         $("#L_content").append(`<p style="border-bottom:2px solid gray;" >遊戲搜索欄</p>`);
         $("#L_content").append(result);
-        console.log(result);
     }
 })
 
-
-
+//導覽列
 function navShowL(platform){
-   
     
     var result = "";
-    var navch=platform;
-    var c = 0;
+    var navch = platform;
     for (var i = 0; i < obj.length; i++) {
         var game = String(obj[i].platform);
         if (game.indexOf(navch) > -1 ) { //&& ch!=""   
-         result += `<table class="smallFrame">
-     <tr>
-         <td>
-             <img id="${obj[i].inx}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
-         </td>
-         <td><span>${obj[i].platform}</span>&ensp;${obj[i].name}</td>
-     </tr>
- </table>`
-     
-    }
- } 
+            result += `<table class="smallFrame">
+                <tr>
+                    <td>
+                        <img id="${obj[i].id}" class="img_${obj[i].imgsize}" src="img/${obj[i].imgsrc}" alt="">
+                    </td>
+                    <td><span>${obj[i].platform}</span>&ensp;${obj[i].name}</td>
+                </tr>
+            </table>`
+        }
+    } 
+    $("#L_content").append(result);
+}
+
  
- $("#L_content").append(result);
-}
-
-
-function navShowR(platform){
- var R_cnt = `  ` ;
-    $("#R_content").empty();
-    $("#R_content").append(cnt);
-}
-
 
 $("ul>li").eq(1).click(function () {
     $("#L_content").empty();
@@ -146,7 +87,6 @@ $("ul>li").eq(2).click(function () {
     $("#L_content").append(`<p style="border-bottom:2px solid gray;" >遊戲搜索欄</p>`);
 
     navShowL("PC");
-    // navShowR("PC");
 })
 
 
@@ -155,7 +95,6 @@ $("ul>li").eq(3).click(function () {
     $("#L_content").append(`<p style="border-bottom:2px solid gray;" >遊戲搜索欄</p>`);
 
     navShowL("PS4");
-    // navShowR("PS4");
 })
 
 $("ul>li").eq(4).click(function () {  
@@ -163,7 +102,6 @@ $("ul>li").eq(4).click(function () {
     $("#L_content").append(`<p style="border-bottom:2px solid gray;" >遊戲搜索欄</p>`);
 
     navShowL("NS");
-    // navShowR("NS");
 })
 
 

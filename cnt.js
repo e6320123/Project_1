@@ -676,6 +676,8 @@ var cnt12=`<br><iframe width="560" height="315" src="https://www.youtube.com/emb
 //tet是圖片id == 圖片inx值
 $("#L_content").on("click","img", function () {
     tet = $(this).attr('id');
+    console.log(typeof(tet));
+    console.log(tet);
     $("#R_content").empty();
 
     switch (tet) {
@@ -771,3 +773,6 @@ $("#L_content").on("click","img", function () {
             break;
     }
 })
+
+
+ 
