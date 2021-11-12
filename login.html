@@ -45,7 +45,7 @@
     <div id="content" class="">
 
         <div class="wrapper">
-            <form id="myForm" class="form-signin" action="http://localhost/index.php" method="post">       
+            <form id="myForm" class="form-signin" action="index.php" method="post">       
               <h2 class="form-signin-heading">Please login</h2>
               <input id="username" type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
               <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>      
@@ -76,21 +76,20 @@
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
 
-        let rows = "0";
+        let response = "";
 
         var ajax = new XMLHttpRequest();
         
         ajax.onload = function() {
 
-            rows = ajax.responseText;
+            response = ajax.responseText;
     
-            if(rows == '1'){
+            if(response == 'success'){
                 alert("登入成功");
                 document.getElementById("myForm").submit()
             }else{
                 alert("帳號或密碼錯誤");
             }
-            // alert(rows);
         }
 
 

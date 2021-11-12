@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="index.css">
 
     <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
@@ -44,27 +44,53 @@
     </div>
     <div id="content" class="">
          
-
         <div class="wrapper">
-            <form class="form-signin" action="http://localhost/reg.php" method="post">       
+            <form class="form-signin" action="" method="">       
               <h2 class="form-signin-heading">會員註冊</h2>
-              <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-              <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
-              <label class="checkbox">
+              帳號<input id="username" type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
+              密碼<input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+              <!-- <label class="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-              </label>
-              <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="success()">Submit</button>   
+              </label> -->
+              <button class="btn btn-lg btn-primary btn-block" type="button" onclick="regist()">Submit</button>   
             </form>
           </div>
 
  
     </div>
 
-
 <script>
-    function success() {
+    function regist() {
+        let xhttp = new XMLHttpRequest();
         
-        alert("註冊成功");
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let params = 'username=' + username + '&password=' + password;
+
+
+        xhttp.onload  = function () {
+
+            let response = xhttp.responseText;
+            if(response == 'success')
+            {
+                alert('註冊成功，請用新帳號登入');
+                window.location.href='login.html';
+            }
+            else
+            {
+                alert('帳號已有人使用');
+            }
+
+        }
+
+
+        xhttp.open('POST', 'check.php');
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(params);
+
+    
+
+
     }
  
 </script>
