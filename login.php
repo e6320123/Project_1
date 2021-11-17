@@ -95,11 +95,16 @@
                 alert("登入成功");
                 document.getElementById("myForm").submit()
             }
-            else if(response == 'wrong')
+            else if(response == 'user wrong')
             {
-                alert("帳號或密碼錯誤");
+                alert("沒有此帳號");
             }
-            else{
+            else if(response == 'pwd wrong')
+            {
+                alert("密碼錯誤");
+            }
+            else
+            {
                 alert("error");
             }
         }
