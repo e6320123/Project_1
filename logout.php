@@ -1,5 +1,6 @@
 <?php
 
+include 'info.php';
 
 session_start();
  
@@ -8,7 +9,7 @@ session_start();
 
 session_destroy();
 
-header('Location: http://localhost');
+header('Location: http://'.$host);
 
 
 

@@ -1,3 +1,9 @@
+<?php
+
+    include 'info.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +51,7 @@
     <div id="content" class="">
 
         <div class="wrapper">
-            <form id="myForm" class="form-signin" action="index.php" method="post">       
+            <form id="myForm" class="form-signin" action="http://<?php echo $host;?>/index.php" method="post">       
               <h2 class="form-signin-heading">Please login</h2>
               <input id="username" type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
               <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>      
@@ -84,16 +90,22 @@
 
             response = ajax.responseText;
     
+            console.log(response);
             if(response == 'success'){
                 alert("登入成功");
                 document.getElementById("myForm").submit()
-            }else{
+            }
+            else if(response == 'wrong')
+            {
                 alert("帳號或密碼錯誤");
+            }
+            else{
+                alert("error");
             }
         }
 
 
-        ajax.open("GET", "http://localhost/check.php?username="+ username +"&password="+ password,true);
+        ajax.open("GET", "http://<?php echo $host;?>/check.php?username="+ username +"&password="+ password,true);
         ajax.send();
 
         

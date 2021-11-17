@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="c.css">
 
     <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
@@ -49,6 +49,7 @@
               <h2 class="form-signin-heading">會員註冊</h2>
               帳號<input id="username" type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
               密碼<input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+              確認密碼<input id="password2" type="password" class="form-control" name="password2" placeholder="Password" required=""/>      
               <!-- <label class="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
               </label> -->
@@ -61,6 +62,15 @@
 
 <script>
     function regist() {
+        
+        let pwd = document.getElementById("password").value;
+        let pwd2 = document.getElementById("password2").value;
+
+        if (pwd != pwd2) {
+            alert('兩次輸入密碼不一樣');
+            return;
+        }
+
         let xhttp = new XMLHttpRequest();
         
         let username = document.getElementById("username").value;
@@ -71,16 +81,21 @@
         xhttp.onload  = function () {
 
             let response = xhttp.responseText;
+            console.log(response);
             if(response == 'success')
             {
                 alert('註冊成功，請用新帳號登入');
-                window.location.href='login.html';
+                window.location.href='login.php';
             }
-            else
+            else if(response == 'failed... username repeat')
             {
                 alert('帳號已有人使用');
             }
+            else
+            {
+                alert('error');
 
+            }
         }
 
 

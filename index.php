@@ -1,11 +1,14 @@
-<?php
+<?php 
+
+include 'info.php';
 
 session_start();
 
+
 $login = "Login";
 $reg = "Register";
-$login_url = "login.html";
-$reg_url = "reg.html";
+$login_url = "login.php";
+$reg_url = "reg.php";
 $json;
 
 if(isset($_SESSION['login']))
@@ -27,9 +30,9 @@ if(isset($_SESSION['user']))
 }
 
 
-#撈出遊戲資料
+// #撈出遊戲資料
 try {
-	$db = new PDO('mysql:host=localhost;dbname=test','root','');
+	$db = new PDO($PDO_host,$PDO_user,$PDO_pwd);
 	$sql = "select * from games;";
 	$statement = $db->query($sql); 
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +43,8 @@ catch (PDOException $e) {
   echo $e->getMessage();
   die();
 }
-
+  
+ 
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +68,10 @@ catch (PDOException $e) {
         //調整id值
         for (let i = 0; i < obj.length; i++) {
             obj[i].id = i+"";
-        }
+        } 
     </script>
 
-</head>
+</head> 
 
 <body id="body_bg" class="cntbgcolor">
     <div id="toTop">
@@ -117,7 +121,6 @@ catch (PDOException $e) {
         <!--L content --><!--L content --><!--L content --><!--L content -->
          
 
-
         <div id="R_content" class="cntbgcolor">
 
             <!--R content --><!--R content --><!--R content --><!--R content -->
@@ -132,7 +135,8 @@ catch (PDOException $e) {
                 </tr>
                 <tr>
                     <td>
-                        <a href="link/ps4.html"><img style="width: 100%;" src="img/ps4/1.jpg" alt=""></a></td>
+                    <!-- javascript:return false; -->
+                        <a id="ps4link" href="#" onclick=""><img style="width: 100%;" src="img/ps4/1.jpg" alt=""></a></td>
                     <td>
                         <a href="link/xb.html"><img style="width: 100%;" src="img/xb/xb1.jpg " alt=""></a></td>
                     <td>
@@ -143,7 +147,7 @@ catch (PDOException $e) {
                 </tr>
                 <tr>
                     <td>
-                        <p id="ps4" style="font-size: 15px;"><a href="link/ps4.html"><span style="color: grey;">《魔物獵人
+                        <p id="ps4" style="font-size: 15px;"><a href="" onclick="showPS4()"><span style="color: grey;">《魔物獵人
                                     世界：Iceborne》將推出
 
                                     PS4 主機上蓋、控制器及穿戴式揚聲器等相關產品</span></a></p>
@@ -357,8 +361,15 @@ catch (PDOException $e) {
      <script src="game.js"></script>
      <script src="data.js"></script>
      <script src="cnt.js"></script>
-</body>
+     <script src="./link/ps4.js"></script>
+     <script> 
 
+     function showPS4() {
+         document.getElementById('R_content').innerHTML = ps4;
+        //  document.getElementById('R_content').innerHTML = obj[0]['htmlstr'];
+     }
+     </script>
+</body>
 </html>
 
 

@@ -1,24 +1,30 @@
 <?php
 
-// 這裡要加header 上機就不用了
-header('Access-Control-Allow-Origin: *');
+include 'info.php';
+
 
 session_start();
- 
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+     
     regist();
     exit();
 }
 else
 {
+    
     login();
     exit();
 }
  
 
+
 function regist(){
+    global $PDO_host;
+    global $PDO_user;
+    global $PDO_pwd;
 
     $user = $_POST['username'];
     
@@ -33,9 +39,8 @@ function regist(){
     else
     {
         #新增會員
-        try { 
-            
-            $db = new PDO('mysql:host=localhost;dbname=test','root','');
+        try {
+            $db = new PDO($PDO_host,$PDO_user,$PDO_pwd);
             
             $sql = "INSERT INTO members (user,pwd) VALUES('{$user}','{$pwd}');";
 
@@ -52,8 +57,7 @@ function regist(){
 
 }
 
-function login(){
-
+function login(){ 
     $user = $_GET['username'];
     
     $pwd = $_GET['password'];
@@ -66,15 +70,22 @@ function login(){
         $_SESSION['user'] = $sql_data[0]['user'];
         echo 'success';
     } 
-   
+    else if(count($sql_data) == 0)
+    {
+        echo 'wrong';
+    } 
 }
 
 #檢查是否有此會員 與 檢查帳號密碼
 function check_member($user,$pwd,$check_or_login){
-     try {
-        $sql;
+    global $PDO_host;
+    global $PDO_user;
+    global $PDO_pwd;
 
-        $db = new PDO('mysql:host=localhost;dbname=test','root','');
+ 
+     try {
+
+        $db = new PDO($PDO_host,$PDO_user,$PDO_pwd);
 
         if($check_or_login == 'login')
         {
