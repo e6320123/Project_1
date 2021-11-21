@@ -1,11 +1,4 @@
 
-CREATE TABLE games(
-    id int primary key auto_increment,
-    platform varchar(10), 
-    name varchar(40), 
-    imgsrc varchar(20), 
-    imgsize varchar(15)
-)DEFAULT CHARSET=utf8mb4;
 
 
 INSERT INTO games (platform, name, imgsrc, imgsize) VALUES("Online", "魔獸世界：決戰艾澤拉斯" , "wow.png", "120x120");
@@ -29,10 +22,58 @@ INSERT INTO games (platform, name, imgsrc, imgsize) VALUES("NS", "哆啦 A 夢 �
 CREATE TABLE members(
     id int primary key auto_increment,
     user varchar(20), 
-    pwd varchar(20)
+    pwd varchar(70)
 ) ;
 
 INSERT INTO members (user, pwd) VALUES("ben", "123");
 
 
 -- select * from members;
+-- select * from games;
+
+drop TABLE `games`;
+
+CREATE TABLE cnt( htmlstr TEXT NOT NULL)DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO cnt (htmlstr) VALUES("{$cnnt}");
+
+ CREATE TABLE pages(
+    id int primary key auto_increment,
+    htmlstr text
+ )DEFAULT CHARSET=utf8mb4;
+
+ CREATE TABLE message(
+    id int primary key auto_increment,
+    user varchar(20),
+    user_imgsrc varchar(15), 
+    content varchar(1000)
+ )DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE games(
+    id int primary key auto_increment,
+    page_id int,
+    platform varchar(10), 
+    name varchar(40), 
+    imgsrc varchar(20), 
+    imgsize varchar(15),
+    foreign key(page_id) references pages(id)
+)DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE news(
+    id int primary key auto_increment, 
+    page_id int,
+    msg_id int,
+    platform varchar(10),
+    title varchar(40),
+    content varchar(200),
+    imgsrc varchar(20),
+    foreign key(page_id) references pages(id),
+    foreign key(msg_id) references message(id)
+) DEFAULT CHARSET=utf8mb4;
+
+
+select * from games where id=1;
+
+
+
+update games set page_id=1 where id=1;

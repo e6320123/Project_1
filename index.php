@@ -1,5 +1,6 @@
 <?php 
 
+
 include 'info.php';
 
 session_start();
@@ -63,8 +64,8 @@ catch (PDOException $e) {
     <link rel="stylesheet" href="c.css">
 
     <script>
-        var obj = <?php echo $json;?>;
-
+        var obj = <?php echo $json;?>; 
+ 
         //調整id值
         for (let i = 0; i < obj.length; i++) {
             obj[i].id = i+"";
@@ -81,11 +82,15 @@ catch (PDOException $e) {
 
         <div class="mynav">
             <ul class="ul">
-                <li>首頁</li>
-                <li>線上遊戲</li>
-                <li>PC GAME</li>
-                <li>PS4</li>
-                <li>NS</li>
+                <li>
+                    <a href="http://<?php echo $host;?>">
+                        首頁
+                    </a>
+                </li>
+                <li id="Online">線上遊戲</li>
+                <li id="PC">PC GAME</li>
+                <li id="PS4">PS4</li>
+                <li id="NS">NS</li>
             </ul>
         </div>
         <div id="search">
@@ -101,24 +106,9 @@ catch (PDOException $e) {
     </div>
     <div id="content" class="cntbgcolor">
         
-        <!--L content --><!--L content --><!--L content --><!--L content -->
         <div id="L_content" class="cntbgcolor">
-            <p style="border-bottom:2px solid gray;">遊戲搜索欄</p>
             
-            <div id="xmp_frame" style="display: none;">
-                <table class="smallFrame">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img id="*id*" class="img_*imgsize*" src="img/*imgsrc*" alt="">
-                            </td>
-                            <td><span>*platform*</span> *name*</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-        <!--L content --><!--L content --><!--L content --><!--L content -->
          
 
         <div id="R_content" class="cntbgcolor">
@@ -135,8 +125,7 @@ catch (PDOException $e) {
                 </tr>
                 <tr>
                     <td>
-                    <!-- javascript:return false; -->
-                        <a id="ps4link" href="#" onclick=""><img style="width: 100%;" src="img/ps4/1.jpg" alt=""></a></td>
+                        <a href="link/ps4.html"><img style="width: 100%;" src="img/ps4/1.jpg" alt=""></a></td>
                     <td>
                         <a href="link/xb.html"><img style="width: 100%;" src="img/xb/xb1.jpg " alt=""></a></td>
                     <td>
@@ -147,7 +136,7 @@ catch (PDOException $e) {
                 </tr>
                 <tr>
                     <td>
-                        <p id="ps4" style="font-size: 15px;"><a href="" onclick="showPS4()"><span style="color: grey;">《魔物獵人
+                        <p style="font-size: 15px;"><a href="" onclick="showPS4()"><span style="color: grey;">《魔物獵人
                                     世界：Iceborne》將推出
 
                                     PS4 主機上蓋、控制器及穿戴式揚聲器等相關產品</span></a></p>
@@ -307,24 +296,7 @@ catch (PDOException $e) {
                 </table>
             </div>
             <br>
-
-
-            <div style="background-color: rgb(254, 255, 246);
-        overflow: hidden;
-        width:10px;
-        height:30px;">
-                <a href="" ><img style="visibility: hidden; " id="r" src=" " alt=""></a>
-
-                <div style="visibility: hidden; " class="tuku_up">
-                    <a href="" ><img class="smallScreen" src=" " alt=""></a>
-                </div>
-                <a href="" ><img style="visibility: hidden; " id="l" src=" " alt=""></a>
-                <div style="visibility: hidden; " id="downini" class="tuku_down">
-                    <a href="" ><img class="star" src=" " alt=""></a>
-                    <a href="" ><img class="end" src=" " alt=""></a>
-                </div>
-
-                <a href="" ><img style="visibility: hidden; " id="r" src=" " alt=""></a>
+ 
                <!--R content --><!--R content --><!--R content --><!--R content -->
             </div>
 
@@ -332,10 +304,24 @@ catch (PDOException $e) {
         </div>
 
 
+      
+
+        <div id="xmp_frame" style="display: none;">
+                <table class="smallFrame">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img id="*id*" class="img_*imgsize*" src="img/*imgsrc*" alt="">
+                            </td>
+                            <td><span>*platform*</span> *name*</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
 
-
-
+            <div id="downini">
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -359,16 +345,7 @@ catch (PDOException $e) {
 
      <script src="xmp.js"></script>
      <script src="game.js"></script>
-     <script src="data.js"></script>
      <script src="cnt.js"></script>
-     <script src="./link/ps4.js"></script>
-     <script> 
-
-     function showPS4() {
-         document.getElementById('R_content').innerHTML = ps4;
-        //  document.getElementById('R_content').innerHTML = obj[0]['htmlstr'];
-     }
-     </script>
 </body>
 </html>
 

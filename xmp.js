@@ -1,35 +1,49 @@
  
  
+xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", obj, "L_content", ["page_id"]);
+
+obj = shuffle(obj);     //洗牌
+ 
 function shuffle(arr) {
-    var i, j, temp;
+    var i, i2, temp;
 
     for (i = arr.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
+        i2 = Math.floor(Math.random() * (i + 1));
         temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        arr[i] = arr[i2];
+        arr[i2] = temp;
     }
     return arr;
 };
 
-obj = shuffle(obj);
+function xmp(start_str, frame, obj_data, input_loc, delete_key){
+    // 注意keys必須和星號包起的取代處同名
+    // start_str = 沒有要用迴圈繞的固定起始字串
+    // frame = 要繞的xmp框架
+    // obj_data = 取代xmp星號字串的obj檔案
+    // input_loc = 繞完後要放入的地方
+    // delete_key = xmp沒有要繞的key 先行剔除
+    let all_str = start_str;
 
+    let keys = Object.keys(obj_data[0]);
 
-var all_str = `<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`;
+    let delete_array = delete_key;
 
-for (let i = 0; i < obj.length; i++) {
+    delete_array.forEach(element => {
+        let delete_key = element;
+        keys = keys.filter(key =>
+            key!=delete_key
+        ); 
+    }); 
 
-    var xmp_frame = document.getElementById("xmp_frame").innerHTML;
-    xmp_frame = xmp_frame.replace('*id*',obj[i].id);
-    xmp_frame = xmp_frame.replace('*platform*',obj[i].platform);
-    xmp_frame = xmp_frame.replace('*name*',obj[i].name);
-    xmp_frame = xmp_frame.replace('*imgsrc*',obj[i].imgsrc);
-    xmp_frame = xmp_frame.replace('*imgsize*',obj[i].imgsize);
-    all_str += xmp_frame;
-    
+    obj_data.forEach(obj => {
+        let xmp_frame = document.getElementById(frame).innerHTML;
+        keys.forEach(key => {
+            xmp_frame = xmp_frame.replace('*'+ key +'*', obj[key]);
+        });
+        all_str += xmp_frame;
+    }); 
+    document.getElementById(input_loc).innerHTML = all_str;
 }
 
-
-document.getElementById("L_content").innerHTML = all_str;
-
-
+ 
