@@ -30,8 +30,25 @@ $("ul>li").click(function () {
     let id = $(this).attr('id');
     navShowL(id);
 }) 
+
 // 載入tuku後都需再跑一遍 loadTuku();
 loadTuku();
+
+// AJAX取網頁資料
+$("#L_content").on("click","img", function () {
+
+    let idx = $(this).attr('id').replace('game_','')*1+1;
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function(){
+        let htmlstr = ajax.responseText;
+        console.log(htmlstr);
+        $("#R_content").html(htmlstr);
+        loadTuku();
+    }
+    ajax.open("get","getPage.php?gameID=" + idx, true);
+    ajax.send(); 
+
+})
 
 function gototop() {
     let speed = $(window).scrollTop();
@@ -166,10 +183,9 @@ function searchKeyWord() {
 
 
 function navShowL(platform){
-    let keyWord = platform;
     let filter_obj = []; 
     obj.forEach(oneObj => {
-        if(oneObj['platform'].indexOf(keyWord) != -1)
+        if(oneObj['platform'].indexOf(platform) != -1)
         {
             filter_obj.push(oneObj);
         }

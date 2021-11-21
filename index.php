@@ -34,7 +34,7 @@ if(isset($_SESSION['user']))
 // #撈出遊戲資料
 try {
 	$db = new PDO($PDO_host,$PDO_user,$PDO_pwd);
-	$sql = "select * from games;";
+	$sql = "SELECT * FROM games;";
 	$statement = $db->query($sql); 
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results, JSON_UNESCAPED_UNICODE);
@@ -311,7 +311,7 @@ catch (PDOException $e) {
                     <tbody>
                         <tr>
                             <td>
-                                <img id="*id*" class="img_*imgsize*" src="img/*imgsrc*" alt="">
+                                <img id="game_*id*"class="img_*imgsize*" src="img/*imgsrc*" alt="">
                             </td>
                             <td><span>*platform*</span> *name*</td>
                         </tr>
@@ -345,7 +345,6 @@ catch (PDOException $e) {
 
      <script src="xmp.js"></script>
      <script src="game.js"></script>
-     <script src="cnt.js"></script>
 </body>
 </html>
 
