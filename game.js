@@ -24,7 +24,7 @@ $("body").keydown(function () {
     }
 })
 //搜索欄
-$("#search>i").click(searchKeyWord)
+$("#searchbtn").click(searchKeyWord)
 //導覽列
 $("ul>li").click(function () {
     let id = $(this).attr('id');
@@ -156,9 +156,10 @@ function loadTuku() {
 
 function searchKeyWord() {
 
-    let keyWord = $("#search>input").val();
+    let keyWord = $("#inputsearch").val();
+    keyWord = keyWord.trim();
     let filter_obj = [];
-    if(keyWord.trim() == '')
+    if(keyWord == '')
     {
         alert('請輸入關鍵字');
     }

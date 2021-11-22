@@ -6,10 +6,10 @@ include 'info.php';
 session_start();
 
 
-$login = "Login";
-$reg = "Register";
-$login_url = "login.php";
-$reg_url = "reg.php";
+$reg = "登入";
+$login = "會員註冊";
+$reg_url = "login.php";
+$login_url = "reg.php";
 $json;
 
 if(isset($_SESSION['login']))
@@ -25,9 +25,9 @@ if(isset($_SESSION['login']))
 
 if(isset($_SESSION['user']))
 {
-    $reg = $_SESSION['user'];
-    $login = "Logout";
-    $login_url = "logout.php";
+    $login = "您好  ".$_SESSION['user'];
+    $reg = "登出";
+    $reg_url = "logout.php";
 }
 
 
@@ -79,33 +79,54 @@ catch (PDOException $e) {
     <div id="toTop">
         <img id="toTopimg" src="img/up.png" alt="">
     </div>
-    <div id="top">
+    <div id="top" class="d-flex align-items-end justify-content-between">
 
-        <div class="mynav">
-            <ul class="ul">
-                <li>
-                    <a href="http://<?php echo $host;?>">
+                   
+
+            <div style="width: 500px;" class="d-flex flex-row bd-highligh">
+                <div class=" bd-highlight p-2">
+                    <!-- &emsp; -->
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a id="Home" href="http://<?php echo $host;?>">
                         首頁
                     </a>
-                </li>
-                <li id="Online">線上遊戲</li>
-                <li id="PC">PC GAME</li>
-                <li id="PS4">PS4</li>
-                <li id="NS">NS</li>
-            </ul>
-        </div>
-        <div id="search">
-            <input id="inputsearch" onclick="inputsearch()" style="border: gray solid 1px;border-radius:15px;" type="text" placeholder="  請輸入搜尋">
-            <i style="color:white;" class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div id="Online" class=" bd-highlight p-2 ">
+                    線上遊戲
+                </div>
+                <div id="PC" class=" bd-highlight p-2">
+                    PC GAME
+                </div>
+                <div id="PS4" class=" bd-highlight p-2">
+                    PS4
+                </div>
+                <div id="NS" class=" bd-highlight p-2">
+                    NS
+                </div>
+            </div>
+            
 
-            <a href="<?php echo $login_url;?>" id="login" class="login">
-                <?php echo $login;?>
-            </a>
-            <a href="<?php echo $reg_url;?>" id="reg" class="reg">
-                <?php echo $reg;?>
-            </a>
-        </div>  
-    </div>
+            <div style="width:500px;" class="d-flex flex-row bd-highligh">
+                <div class=" bd-highlight p-2">
+                    <input id="inputsearch" onclick="inputsearch()" style="border: gray solid 1px;border-radius:15px;" type="text" placeholder="">
+                    <i id="searchbtn"style="cursor: pointer; color:white;" class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a href="<?php echo $login_url;?>" id="login" class="login">
+                        <?php echo $login;?>
+                    </a>
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a href="<?php echo $reg_url;?>" id="reg" class="reg">
+                        <?php echo $reg;?>
+                    </a>
+                </div> 
+            </div>
+
+
+    </div>  <!-- <div id="top"> -->
+
     <div id="content" class="cntbgcolor">
         
         <div id="L_content" class="cntbgcolor">
