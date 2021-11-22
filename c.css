@@ -1,4 +1,20 @@
+.rowimg{
+    object-fit: cover;
+    height: 150px;
+    width:150px;
+}
+.rowp{
+    font-size:18px;
+    color:rgb(115, 126, 126);
+} 
+.rowframe{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
 /* ------------- 輪播 -------------- */
+
 .carousel-item img {
     /* width: 100px; */
     height: 350px;
@@ -30,7 +46,7 @@
 
 }
 
-.mynav li {
+.mynav li, .mynav li>a {
     display: inline;
     cursor: pointer;
     margin: 10px;
@@ -83,25 +99,24 @@
 }
 
 
-#l,
-.tuku_down img,
-#r {
+#l, #r, .tuku_down img{
     width: 80px;
     height: 80px;
     display: inline-block;
     cursor: pointer;
-}
+} 
 
-#l,
-#r {
+#l, #r {
     margin-bottom: 75px;
 }
 
-#l {
+#l{
     margin-left: 13px;
 }
 
 .fullScreen {
+    background-color: black;
+    border:2px solid grey;
     object-fit: contain;
     position: fixed;
     left: 40px;
@@ -246,13 +261,7 @@
 #linkTable td {
 width:25%;
 }
-
-#linkTable2 img{
-    object-fit: cover;
-    /* border: 2px solid gray; */
-    /* background-color: rgb(248, 247, 247); */
-}
-
+ 
 /* -----------------linktabel---------------- */
 
 /*Links文章去除連結底線*/
