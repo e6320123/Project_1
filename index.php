@@ -62,6 +62,7 @@ catch (PDOException $e) {
     <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
     <script>
         var obj = <?php echo $json;?>; 
@@ -94,8 +95,9 @@ catch (PDOException $e) {
             </ul>
         </div>
         <div id="search">
-            <input type="text" placeholder="請輸入搜尋" name="" id="">
-            <img src="img/sear.jpg" alt="">
+            <input id="inputsearch" onclick="inputsearch()" style="border: gray solid 1px;border-radius:15px;" type="text" placeholder="  請輸入搜尋">
+            <i style="color:white;" class="fa fa-search" aria-hidden="true"></i>
+
             <a href="<?php echo $login_url;?>" id="login" class="login">
                 <?php echo $login;?>
             </a>

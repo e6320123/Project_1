@@ -24,7 +24,7 @@ $("body").keydown(function () {
     }
 })
 //搜索欄
-$("#search>img").click(searchKeyWord)
+$("#search>i").click(searchKeyWord)
 //導覽列
 $("ul>li").click(function () {
     let id = $(this).attr('id');
@@ -193,3 +193,9 @@ function navShowL(platform){
     xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", filter_obj, "L_content", ["page_id"]);
 }
 
+
+//搜索欄加入空格
+function inputsearch() {
+    if(document.getElementById('inputsearch').value.trim() == '')
+        document.getElementById('inputsearch').value = '  ';
+}
