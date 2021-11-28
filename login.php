@@ -2,6 +2,11 @@
 
     include 'info.php';
 
+    $reg = "登入";
+    $login = "會員註冊";
+    $reg_url = "login.php";
+    $login_url = "reg.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +20,12 @@
     <link rel="icon" href="img/d_icon.png" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"><!--font awesome icon-->
 
-    <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
-
+    <!--登入模板-->
+    <!-- <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'> -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -29,25 +34,62 @@
     <div id="toTop">
         <img id="toTopimg" src="img/up.png" alt="">
     </div>
-    <div id="top">
+    
 
-        <div class="mynav">
-            <ul class="ul">
-                <li>首頁</li>
-                <li>線上遊戲</li>
-                <li>PC GAME</li>
-                <li>PS4</li>
-                <li>NS</li>
-            </ul>
-        </div>
-        <div id="search">
-            <input type="text" placeholder="請輸入搜尋" name="" id="">
-            <img src="img/sear.jpg" alt="">
-            <a href="" id="login" class="login">
-                
-            </a>
-        </div>  
-    </div>
+    <div id="top" class="d-flex align-items-end justify-content-between">
+
+                   
+
+            <div id="navbar" style="width: 500px;" class="d-flex flex-row bd-highligh">
+                <div class=" bd-highlight p-2">
+                    <!-- &emsp; -->
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a id="Home" href="http://<?php echo $host;?>">
+                        首頁
+                    </a>
+                </div>
+                <div id="Online" class=" bd-highlight p-2 ">
+                    線上遊戲
+                </div>
+                <div id="PC" class=" bd-highlight p-2">
+                    PC GAME
+                </div>
+                <div id="PS4" class=" bd-highlight p-2">
+                    PS4
+                </div>
+                <div id="NS" class=" bd-highlight p-2">
+                    NS
+                </div>
+            </div>
+            
+
+            <div style="width:500px;" class="d-flex flex-row bd-highligh">
+                <div class=" bd-highlight p-2">
+                    <input id="inputsearch" onclick="inputsearch()" style="border: gray solid 1px;border-radius:15px;" type="text" placeholder="">
+                    <i id="searchbtn"style="cursor: pointer; color:white;" class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a href="<?php echo $login_url;?>" id="login" class="login">
+                        <?php echo $login;?>
+                    </a>
+                </div>
+                <div class=" bd-highlight p-2">
+                    <a href="<?php echo $reg_url;?>" id="reg" class="reg">
+                        <?php echo $reg;?>
+                    </a>
+                </div> 
+            </div>
+
+
+    </div>  <!-- <div id="top"> -->
+
+
+
+
+
+
+
     <div id="content" class="">
 
         <div class="wrapper">
@@ -89,9 +131,10 @@
         ajax.onload = function() {
 
             response = ajax.responseText;
-    
+            
             console.log(response);
-            if(response == 'success'){
+            if(response == 'success')
+            {
                 alert("登入成功");
                 document.getElementById("myForm").submit()
             }

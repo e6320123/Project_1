@@ -26,7 +26,7 @@ $("body").keydown(function () {
 //搜索欄
 $("#searchbtn").click(searchKeyWord)
 //導覽列
-$("ul>li").click(function () {
+$("#navbar>div").click(function () {
     let id = $(this).attr('id');
     navShowL(id);
 }) 
@@ -34,7 +34,7 @@ $("ul>li").click(function () {
 // 載入tuku後都需再跑一遍 loadTuku();
 loadTuku();
 
-// AJAX取網頁資料
+// AJAX取網頁資料 (遊戲)
 $("#L_content").on("click","img", function () {
 
     let idx = $(this).attr('id').replace('game_','')*1+1;
@@ -49,6 +49,31 @@ $("#L_content").on("click","img", function () {
     ajax.send(); 
 
 })
+// AJAX取網頁資料 (新聞)
+get_news_page("#news_row", "news_row_", "img");
+get_news_page("#news_row2", "news_row2_", "a");
+get_news_page("#news_row3", "news_row3_", "img");
+get_news_page("#news_row3", "news_row3t_", "a");
+
+function get_news_page(div_id, cut_str, target) {
+
+    $(div_id).on("click",target , function () {
+ 
+        let idx = $(this).attr('id').replace(cut_str,'')*1;
+        let ajax = new XMLHttpRequest();
+        ajax.onload = function(){
+            let htmlstr = ajax.responseText;
+            console.log(htmlstr);
+            $("#R_content").html(htmlstr);
+            loadTuku();
+        }
+        ajax.open("get","getPage2.php?newsID=" + idx, true);
+        ajax.send(); 
+    
+    })
+}
+
+
 
 function gototop() {
     let speed = $(window).scrollTop();
@@ -177,7 +202,7 @@ function searchKeyWord() {
         }
         else
         {
-            xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", filter_obj, "L_content", ["page_id"]);
+            xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", filter_obj, "L_content", ["page_id"], true);
         }
     }
 }
@@ -191,7 +216,7 @@ function navShowL(platform){
             filter_obj.push(oneObj);
         }
     }); 
-    xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", filter_obj, "L_content", ["page_id"]);
+    xmp(`<p style="border-bottom:2px solid gray;">遊戲搜索欄</p>`, "xmp_frame", filter_obj, "L_content", ["page_id"], true);
 }
 
 
