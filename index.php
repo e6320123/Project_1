@@ -51,7 +51,7 @@ catch (PDOException $e) {
   die();
 }
   
-
+// echo $json;
 ?>
 
 <!DOCTYPE html>
@@ -154,16 +154,14 @@ catch (PDOException $e) {
 
         <xmp id="xmp_frame" style="display: none;">
             <table class="smallFrame">
-                <tbody>
-                    <tr>
-                        <td>
-                            <img id="game_*id*"class="img_*imgsize*" src="img/*imgsrc*" alt="">
-                        </td>
-                        <td>
-                            <span>*platform*</span> *name*
-                        </td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>
+                        <img id="game_*id*"class="img_*imgsize*" src="img/*imgsrc*" alt="">
+                    </td>
+                    <td>
+                        <span>*platform*</span> *name*
+                    </td>
+                </tr>
             </table>
         </xmp>
 
